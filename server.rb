@@ -23,6 +23,7 @@ class Server < Sinatra::Base
   get '/a/flgl/*' do
     # Put url in store
     url = request.url.partition('/a/flgl/').last
+    url = url.sub(/^http(s?):\/([^\/])/, 'http\1://\2')
     add(url)
     
     # Deliver page that redirects to url after some seconds
